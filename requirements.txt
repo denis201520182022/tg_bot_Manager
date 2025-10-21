@@ -9,3 +9,24 @@ python-dotenv
 
 aiogram
 nest_asyncio
+
+[Unit]
+Description=Telegram Bot Manager for AI Projects
+After=network.target redis-server.service
+Requires=redis-server.service
+
+[Service]
+
+User=root 
+Group=root
+
+WorkingDirectory=/var/local/zabota_tg_bot_manager/tg_bot_Manager
+
+ExecStart=/var/local/zabota_tg_bot_manager/tg_bot_Manager/venv/bin/python /var/local/zabota_tg_bot_manager/tg_bot_Manager/bot.py
+
+Restart=always
+RestartSec=5
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
